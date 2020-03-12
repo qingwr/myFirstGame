@@ -12,6 +12,7 @@
     "modules" : ["cocos2d"],
 
     "jsList" : [
+        "src/lobby/lobbyLayer.js",
         "src/resource.js",
         "src/app.js"
     ]

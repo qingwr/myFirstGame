@@ -79,11 +79,15 @@ var LobbyLayer = cc.Layer.extend({
         btn_showLeft.titleColor = cc.color(30,30,30)
         btn_showLeft.addClickEventListener(function () {
             btn_showLeft.setTouchEnabled(false)
-            if(this.leftLayer.x<0)
+            this.leftLayer.stopAllActions()
+            btn_showLeft.stopAllActions()
+            cc.log(Math.abs(Math.floor(this.leftLayer.x)))
+            if(Math.abs(Math.floor(this.leftLayer.x))>2)
             {
                 this.leftLayer.runAction(cc.sequence(cc.moveBy(0.3,cc.p(this.leftLayer.width,0))))
                 btn_showLeft.runAction(cc.sequence(cc.moveBy(0.3,cc.p(this.leftLayer.width,0)),cc.callFunc(function () {
                     btn_showLeft.setTouchEnabled(true)
+                    btn_showLeft.stopAllActions()
                 })))
             }
             else
@@ -91,6 +95,7 @@ var LobbyLayer = cc.Layer.extend({
                 this.leftLayer.runAction(cc.sequence(cc.moveBy(0.3,cc.p(-this.leftLayer.width,0))))
                 btn_showLeft.runAction(cc.sequence(cc.moveBy(0.3,cc.p(-this.leftLayer.width,0)),cc.callFunc(function () {
                     btn_showLeft.setTouchEnabled(true)
+                    btn_showLeft.stopAllActions()
                 })))
             }
         }.bind(this))
@@ -110,11 +115,14 @@ var LobbyLayer = cc.Layer.extend({
         btn_showRight.titleColor = cc.color(30,30,30)
         btn_showRight.addClickEventListener(function () {
             btn_showRight.setTouchEnabled(false)
-            if(Math.floor(this.rightLayer.x-this.rightLayer.sx)==0)
+            this.rightLayer.stopAllActions()
+            btn_showRight.stopAllActions()
+            if(Math.abs(Math.floor(this.rightLayer.x)-this.rightLayer.sx)<=1)
             {
                 this.rightLayer.runAction(cc.sequence(cc.moveBy(0.3,cc.p(-this.rightLayer.width,0))))
                 btn_showRight.runAction(cc.sequence(cc.moveBy(0.3,cc.p(-this.rightLayer.width,0)),cc.callFunc(function () {
                     btn_showRight.setTouchEnabled(true)
+                    btn_showRight.stopAllActions()
                 })))
             }
             else
@@ -122,6 +130,7 @@ var LobbyLayer = cc.Layer.extend({
                 this.rightLayer.runAction(cc.sequence(cc.moveBy(0.3,cc.p(this.rightLayer.width,0))))
                 btn_showRight.runAction(cc.sequence(cc.moveBy(0.3,cc.p(this.rightLayer.width,0)),cc.callFunc(function () {
                     btn_showRight.setTouchEnabled(true)
+                    btn_showRight.stopAllActions()
                 })))
             }
         }.bind(this))

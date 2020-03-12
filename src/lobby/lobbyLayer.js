@@ -11,6 +11,9 @@ var LobbyLayer = cc.Layer.extend({
         this.spriteBg.y = size.height/2;
         this.addChild(this.spriteBg, 0);
         this.showUnlogin();
+        // this.showMainLayer();
+        // this.showLeftView();
+        // this.showRightView();
         return true;
     },
 
@@ -22,8 +25,36 @@ var LobbyLayer = cc.Layer.extend({
         var aLabel = new cc.LabelTTF("登录首页", "Arial", 48);
         aLabel.x = size.width-150;
         aLabel.y = size.height-50;
-        aLabel.color  = cc.color(60,60,60)
+        aLabel.color  = cc.color(100,100,100)
         this.addChild(aLabel, 5);
+
+        var btn_login = new ccui.Button();
+        btn_login.setContentSize(cc.size(200,100))
+        btn_login.setPressedActionEnabled(true)
+        btn_login.titleText  = "登 录"
+        btn_login.x = size.width/2+100;
+        btn_login.y = size.height/2;
+        this.addChild(btn_login,100)
+        btn_login.titleFontSize = 32;
+        btn_login.color = cc.color(30,30,30)
+        btn_login.addClickEventListener(function () {
+            this.addChild(new LoginLayout(),100)
+        }.bind(this));
+
+
+        var reg_login = new ccui.Button();
+        reg_login.setContentSize(cc.size(200,100))
+        reg_login.setPressedActionEnabled(true)
+        reg_login.titleText  = "注 册"
+        reg_login.x = size.width/2+300;
+        reg_login.y = size.height/2;
+        this.addChild(reg_login,100)
+        reg_login.titleFontSize = 32;
+        reg_login.color = cc.color(30,30,30)
+        reg_login.addClickEventListener(function () {
+            this.addChild(new RegLayout(),100)
+        }.bind(this))
+
     },
 
     /*
@@ -31,6 +62,46 @@ var LobbyLayer = cc.Layer.extend({
     */
     showLobby:function () {
         
-    }
+    },
+
+    showMainLayer:function(){
+        var size = cc.winSize;
+        var mainLayer = new cc.LayerColor();
+        mainLayer.width  = 1144;
+        mainLayer.height = 750;
+        this.addChild(mainLayer,0)
+        mainLayer.x = (size.width-1144)/2;
+        mainLayer.y = 0;
+        mainLayer.setAnchorPoint(cc.p(0.5,0.5))
+        mainLayer.color  = cc.color(80,80,80);
+        this.mainLayer = mainLayer;
+    },
+
+    showLeftView:function (){
+        var size = cc.winSize;
+        var leftLayer = new cc.LayerColor();
+        leftLayer.width  = (size.width-1144)/2;
+        leftLayer.height = 750;
+        this.addChild(leftLayer,0)
+        leftLayer.x = 0;
+        leftLayer.y = 0;
+        leftLayer.setAnchorPoint(cc.p(0.5,0.5))
+        leftLayer.color  = cc.color(200,200,200);
+        this.leftLayer = leftLayer;
+    },
+
+    showRightView:function () {
+        var size = cc.winSize;
+        var rightLayer = new cc.LayerColor();
+        rightLayer.width  = (size.width-1144)/2;
+        rightLayer.height = 750;
+        this.addChild(rightLayer,0)
+        rightLayer.x = size.width-rightLayer.width;
+        rightLayer.y = 0;
+        rightLayer.setAnchorPoint(cc.p(0.5,0.5))
+        rightLayer.color  = cc.color(200,200,200);
+        this.rightLayer = rightLayer;
+    },
+
     
 });

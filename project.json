@@ -13,6 +13,8 @@
 
     "jsList" : [
         "src/lobby/lobbyLayer.js",
+        "src/component/login/loginLayer.js",
+        "src/component/reg/regLayer.js",
         "src/resource.js",
         "src/app.js"
     ]

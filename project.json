@@ -9,12 +9,12 @@
     "renderMode" : 0,
     "engineDir":"frameworks/cocos2d-html5",
 
-    "modules" : ["cocos2d"],
+    "modules" : ["extensions"],
 
     "jsList" : [
         "src/lobby/lobbyLayer.js",
-        "src/component/login/loginLayer.js",
-        "src/component/reg/regLayer.js",
+        "src/component/login/loginLayout.js",
+        "src/component/reg/regLayout.js ",
         "src/resource.js",
         "src/app.js"
     ]

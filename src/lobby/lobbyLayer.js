@@ -29,28 +29,32 @@ var LobbyLayer = cc.Layer.extend({
         this.addChild(aLabel, 5);
 
         var btn_login = new ccui.Button();
-        btn_login.setContentSize(cc.size(200,100))
+        btn_login.loadTextures(res.Button_Normal_png,res.Button_Press_png,res.Button_Disable_png)
+        btn_login.setScale9Enabled(true)
+        btn_login.setContentSize(cc.size(160,80))
         btn_login.setPressedActionEnabled(true)
         btn_login.titleText  = "登 录"
         btn_login.x = size.width/2+100;
         btn_login.y = size.height/2;
         this.addChild(btn_login,100)
         btn_login.titleFontSize = 32;
-        btn_login.color = cc.color(30,30,30)
+        btn_login.titleColor = cc.color(30,30,30)
         btn_login.addClickEventListener(function () {
             this.addChild(new LoginLayout(),100)
         }.bind(this));
 
 
         var reg_login = new ccui.Button();
-        reg_login.setContentSize(cc.size(200,100))
+        reg_login.loadTextures(res.Button_Normal_png,res.Button_Press_png,res.Button_Disable_png)
+        reg_login.setScale9Enabled(true)
+        reg_login.setContentSize(cc.size(160,80))
         reg_login.setPressedActionEnabled(true)
         reg_login.titleText  = "注 册"
         reg_login.x = size.width/2+300;
         reg_login.y = size.height/2;
         this.addChild(reg_login,100)
         reg_login.titleFontSize = 32;
-        reg_login.color = cc.color(30,30,30)
+        reg_login.titleColor = cc.color(30,30,30)
         reg_login.addClickEventListener(function () {
             this.addChild(new RegLayout(),100)
         }.bind(this))

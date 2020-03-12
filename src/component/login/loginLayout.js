@@ -21,12 +21,14 @@ var LoginLayout = ccui.Layout.extend({
         layout.setTouchEnabled(true);
         layout.width  = 900;
         layout.height = 600;
-        layout.setBackGroundColor(cc.color.BLACK);
+        layout.setBackGroundColor(cc.color(100,100,100));
         layout.setBackGroundColorType(ccui.Layout.BG_COLOR_SOLID);
         layout.setBackGroundColorOpacity(255);
         layout.x = (size.width-layout.width)/2;
         layout.y = (size.height-layout.height)/2;
         this.addChild(layout)
+
+
 
     },
 

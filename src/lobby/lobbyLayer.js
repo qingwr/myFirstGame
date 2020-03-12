@@ -59,6 +59,76 @@ var LobbyLayer = cc.Layer.extend({
         }.bind(this))
         this.btn_reg = btn_reg;
 
+        this.showLeftView();
+        this.showRightView();
+        this.leftLayer.sx = this.leftLayer.x;
+        this.leftLayer.x  = 0-this.leftLayer.width;
+        this.rightLayer.sx = this.rightLayer.x;
+        this.rightLayer.x  = size.width;
+
+        var btn_showLeft = new ccui.Button();
+        btn_showLeft.loadTextures(res.Button_Normal_png,res.Button_Press_png,res.Button_Disable_png)
+        btn_showLeft.setScale9Enabled(true)
+        btn_showLeft.setContentSize(cc.size(160,80))
+        btn_showLeft.setPressedActionEnabled(true)
+        btn_showLeft.titleText  = "左Layer"
+        btn_showLeft.x = btn_showLeft.width/2;
+        btn_showLeft.y = size.height-btn_showLeft.height/2;
+        this.addChild(btn_showLeft,100)
+        btn_showLeft.titleFontSize = 32;
+        btn_showLeft.titleColor = cc.color(30,30,30)
+        btn_showLeft.addClickEventListener(function () {
+            btn_showLeft.setTouchEnabled(false)
+            if(this.leftLayer.x<0)
+            {
+                this.leftLayer.runAction(cc.sequence(cc.moveBy(0.3,cc.p(this.leftLayer.width,0))))
+                btn_showLeft.runAction(cc.sequence(cc.moveBy(0.3,cc.p(this.leftLayer.width,0)),cc.callFunc(function () {
+                    btn_showLeft.setTouchEnabled(true)
+                })))
+            }
+            else
+            {
+                this.leftLayer.runAction(cc.sequence(cc.moveBy(0.3,cc.p(-this.leftLayer.width,0))))
+                btn_showLeft.runAction(cc.sequence(cc.moveBy(0.3,cc.p(-this.leftLayer.width,0)),cc.callFunc(function () {
+                    btn_showLeft.setTouchEnabled(true)
+                })))
+            }
+        }.bind(this))
+        this.btn_showLeft = btn_showLeft;
+
+        //显示右方
+        var btn_showRight = new ccui.Button();
+        btn_showRight.loadTextures(res.Button_Normal_png,res.Button_Press_png,res.Button_Disable_png)
+        btn_showRight.setScale9Enabled(true)
+        btn_showRight.setContentSize(cc.size(160,80))
+        btn_showRight.setPressedActionEnabled(true)
+        btn_showRight.titleText  = "右Layer"
+        btn_showRight.x = size.width-btn_showRight.width/2;
+        btn_showRight.y = size.height-btn_showLeft.height/2;
+        this.addChild(btn_showRight,100)
+        btn_showRight.titleFontSize = 32;
+        btn_showRight.titleColor = cc.color(30,30,30)
+        btn_showRight.addClickEventListener(function () {
+            btn_showRight.setTouchEnabled(false)
+            if(Math.floor(this.rightLayer.x-this.rightLayer.sx)==0)
+            {
+                this.rightLayer.runAction(cc.sequence(cc.moveBy(0.3,cc.p(-this.rightLayer.width,0))))
+                btn_showRight.runAction(cc.sequence(cc.moveBy(0.3,cc.p(-this.rightLayer.width,0)),cc.callFunc(function () {
+                    btn_showRight.setTouchEnabled(true)
+                })))
+            }
+            else
+            {
+                this.rightLayer.runAction(cc.sequence(cc.moveBy(0.3,cc.p(this.rightLayer.width,0))))
+                btn_showRight.runAction(cc.sequence(cc.moveBy(0.3,cc.p(this.rightLayer.width,0)),cc.callFunc(function () {
+                    btn_showRight.setTouchEnabled(true)
+                })))
+            }
+        }.bind(this))
+        this.btn_showRight = btn_showRight;
+
+        this.btn_showLeft.setVisible(false);
+        this.btn_showRight.setVisible(false);
     },
 
     /*
@@ -84,7 +154,7 @@ var LobbyLayer = cc.Layer.extend({
     showLeftView:function (){
         var size = cc.winSize;
         var leftLayer = new cc.LayerColor();
-        leftLayer.width  = (size.width-1144)/2;
+        leftLayer.width  = 200;
         leftLayer.height = 750;
         this.addChild(leftLayer,0)
         leftLayer.x = 0;
@@ -97,10 +167,10 @@ var LobbyLayer = cc.Layer.extend({
     showRightView:function () {
         var size = cc.winSize;
         var rightLayer = new cc.LayerColor();
-        rightLayer.width  = (size.width-1144)/2;
+        rightLayer.width  = 200;
         rightLayer.height = 750;
         this.addChild(rightLayer,0)
-        rightLayer.x = size.width-rightLayer.width;
+        rightLayer.x = size.width;
         rightLayer.y = 0;
         rightLayer.setAnchorPoint(cc.p(0.5,0.5))
         rightLayer.color  = cc.color(200,200,200);
@@ -111,9 +181,10 @@ var LobbyLayer = cc.Layer.extend({
         this.btn_login.setVisible(false)
         this.btn_reg.setVisible(false)
         this.aLabel.setVisible(false)
-        this.showMainLayer();
-        this.showLeftView();
-        this.showRightView();
+        this.btn_showLeft.setVisible(true)
+        this.btn_showLeft.setVisible(true);
+        this.btn_showRight.setVisible(true);
+        // this.showMainLayer();
     },
 
     

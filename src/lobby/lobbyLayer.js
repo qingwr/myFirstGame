@@ -11,9 +11,6 @@ var LobbyLayer = cc.Layer.extend({
         this.spriteBg.y = size.height/2;
         this.addChild(this.spriteBg, 0);
         this.showUnlogin();
-        // this.showMainLayer();
-        // this.showLeftView();
-        // this.showRightView();
         return true;
     },
 
@@ -27,6 +24,7 @@ var LobbyLayer = cc.Layer.extend({
         aLabel.y = size.height-50;
         aLabel.color  = cc.color(100,100,100)
         this.addChild(aLabel, 5);
+        this.aLabel = aLabel;
 
         var btn_login = new ccui.Button();
         btn_login.loadTextures(res.Button_Normal_png,res.Button_Press_png,res.Button_Disable_png)
@@ -42,22 +40,24 @@ var LobbyLayer = cc.Layer.extend({
         btn_login.addClickEventListener(function () {
             this.addChild(new LoginLayout(),100)
         }.bind(this));
+        this.btn_login = btn_login;
 
 
-        var reg_login = new ccui.Button();
-        reg_login.loadTextures(res.Button_Normal_png,res.Button_Press_png,res.Button_Disable_png)
-        reg_login.setScale9Enabled(true)
-        reg_login.setContentSize(cc.size(160,80))
-        reg_login.setPressedActionEnabled(true)
-        reg_login.titleText  = "注 册"
-        reg_login.x = size.width/2+300;
-        reg_login.y = size.height/2;
-        this.addChild(reg_login,100)
-        reg_login.titleFontSize = 32;
-        reg_login.titleColor = cc.color(30,30,30)
-        reg_login.addClickEventListener(function () {
+        var btn_reg = new ccui.Button();
+        btn_reg.loadTextures(res.Button_Normal_png,res.Button_Press_png,res.Button_Disable_png)
+        btn_reg.setScale9Enabled(true)
+        btn_reg.setContentSize(cc.size(160,80))
+        btn_reg.setPressedActionEnabled(true)
+        btn_reg.titleText  = "注 册"
+        btn_reg.x = size.width/2+300;
+        btn_reg.y = size.height/2;
+        this.addChild(btn_reg,100)
+        btn_reg.titleFontSize = 32;
+        btn_reg.titleColor = cc.color(30,30,30)
+        btn_reg.addClickEventListener(function () {
             this.addChild(new RegLayout(),100)
         }.bind(this))
+        this.btn_reg = btn_reg;
 
     },
 
@@ -105,6 +105,15 @@ var LobbyLayer = cc.Layer.extend({
         rightLayer.setAnchorPoint(cc.p(0.5,0.5))
         rightLayer.color  = cc.color(200,200,200);
         this.rightLayer = rightLayer;
+    },
+
+    freshLobby:function () {
+        this.btn_login.setVisible(false)
+        this.btn_reg.setVisible(false)
+        this.aLabel.setVisible(false)
+        this.showMainLayer();
+        this.showLeftView();
+        this.showRightView();
     },
 
     

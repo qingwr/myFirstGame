@@ -28,6 +28,24 @@ var RegLayout = ccui.Layout.extend({
         layout.y = (size.height-layout.height)/2;
         this.addChild(layout)
 
+        var reg_login = new ccui.Button();
+        reg_login.loadTextures(res.Button_Normal_png,res.Button_Press_png,res.Button_Disable_png)
+        reg_login.setScale9Enabled(true)
+        reg_login.setContentSize(cc.size(160,80))
+        reg_login.setPressedActionEnabled(true)
+        reg_login.titleText  = "注 册"
+        reg_login.x = size.width/2+300;
+        reg_login.y = size.height/2;
+        reg_login.x = layout.width/2;
+        reg_login.y = 100;
+        layout.addChild(reg_login,100)
+        reg_login.titleFontSize = 32;
+        reg_login.titleColor = cc.color(30,30,30)
+        reg_login.addClickEventListener(function () {
+            this.parent.freshLobby();
+            this.removeFromParent()
+        }.bind(this))
+
     },
 
 });

@@ -61,7 +61,8 @@ cc.game.onStart = function(){
     // Adjust viewport meta
     cc.view.adjustViewPort(true);
     // Setup the resolution policy and design resolution size
-    cc.view.setDesignResolutionSize(1624, 750, cc.ResolutionPolicy.SHOW_ALL);
+    //适配高度，宽度上面可以切割
+    cc.view.setDesignResolutionSize(1624, 750, cc.ResolutionPolicy.FIXED_HEIGHT);
     // Instead of set design resolution, you can also set the real pixel resolution size
     // Uncomment the following line and delete the previous line.
     // cc.view.setRealPixelResolution(960, 640, cc.ResolutionPolicy.SHOW_ALL);
